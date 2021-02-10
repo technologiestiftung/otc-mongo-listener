@@ -1,4 +1,4 @@
-FROM --platform=arm64 node:12.16.2-alpine3.9 as builder
+FROM --platform=arm64 node:12.20.1-alpine3.9 as builder
 WORKDIR /app
 ENV NODE_ENV=development
 
@@ -6,7 +6,7 @@ COPY ./package*.json ./
 RUN  npm ci --quiet
 COPY  . .
 RUN npm run build
-FROM --platform=arm64 node:12.16.2-alpine3.9 as runner
+FROM --platform=arm64 node:12.20.1-alpine3.9 as runner
 WORKDIR /app
 ENV NODE_ENV=production
 ENV MONGO_USER=root
